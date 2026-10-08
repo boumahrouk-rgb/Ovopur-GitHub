@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OvoPur – Œufs liquides pasteurisés pour l'industrie agroalimentaire</title>
+<meta name="description" content="OvoPur produit des œufs liquides pasteurisés (entiers, jaunes, blancs) sur une ligne SANOVO entièrement automatisée, pour boulangeries, industriels, hôtels et restaurants.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --white:#ffffff;
+  --paper:#f5f8f7;
+  --yolk:#f2b632;
+  --yolk-soft:#fff4d3;
+  --steel:#2c3743;
+  --steel-2:#4a5866;
+  --steel-3:#8794a1;
+  --line:#e3e9ee;
+  --fresh:#1f9e86;
+  --blue:#2d7fb5;
+  --blue-soft:#e6f2f9;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Figtree","Segoe UI",system-ui,-apple-system,sans-serif;
+  --wa:#25d366;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:var(--body);color:var(--steel);background:var(--white);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,92%);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);line-height:1.08;letter-spacing:-.02em;color:var(--steel)}
+h2{font-size:clamp(2rem,4.2vw,3.1rem);font-weight:800}
+h3{font-size:1.5rem;font-weight:700}
+p.lead{font-size:1.15rem;color:var(--steel-2);max-width:60ch}
+
+/* ---------- Boutons ---------- */
+.btn{display:inline-flex;align-items:center;gap:.6rem;font:600 1rem var(--body);padding:.95rem 1.6rem;border-radius:999px;border:2px solid transparent;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease,background .25s ease,color .25s ease}
+.btn-primary{background:var(--steel);color:var(--white)}
+.btn-primary:hover{background:var(--fresh);transform:translateY(-2px);box-shadow:0 12px 26px -10px rgba(31,158,134,.7)}
+.btn-ghost{border-color:var(--line);color:var(--steel);background:var(--white)}
+.btn-ghost:hover{border-color:var(--steel);transform:translateY(-2px)}
+.btn-wa{background:var(--wa);color:#05361a}
+.btn-wa:hover{transform:translateY(-2px);box-shadow:0 12px 26px -10px rgba(37,211,102,.8)}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* ---------- En-tête ---------- */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:.65rem;font:800 1.55rem var(--display);letter-spacing:-.03em}
+.logo svg{width:34px;height:40px}
+.logo b{color:var(--fresh);font-weight:800}
+nav ul{display:flex;align-items:center;gap:2.1rem;list-style:none}
+nav a.link{font-weight:500;color:var(--steel-2);position:relative;padding:.3rem 0;transition:color .2s}
+nav a.link::after{content:"";position:absolute;left:0;bottom:-2px;height:2px;width:0;background:var(--yolk);transition:width .3s ease}
+nav a.link:hover{color:var(--steel)}
+nav a.link:hover::after{width:100%}
+nav .btn{padding:.65rem 1.2rem;font-size:.95rem}
+.burger{display:none;background:none;border:0;width:44px;height:44px;cursor:pointer;color:var(--steel)}
+.burger span{display:block;width:24px;height:2px;background:currentColor;margin:5px auto;transition:transform .3s,opacity .3s}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ---------- Image avec repli ---------- */
+.ph{position:relative;overflow:hidden;background:linear-gradient(135deg,var(--yolk-soft),var(--blue-soft))}
+.ph img{width:100%;height:100%;object-fit:cover;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.ph.noimg::after{content:attr(data-file);position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:1rem;font:600 .85rem var(--body);color:var(--steel-3)}
+
+/* ---------- Héro ---------- */
+.hero{padding:clamp(2.5rem,6vw,5rem) 0 clamp(3rem,6vw,5.5rem);background:
+  radial-gradient(60rem 30rem at 85% -10%,var(--yolk-soft),transparent 60%),
+  radial-gradient(40rem 26rem at -10% 110%,var(--blue-soft),transparent 60%),var(--white)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.hero h1{font-size:clamp(2.5rem,6vw,4.6rem);font-weight:800;margin-bottom:1.4rem}
+.hero p.lead{margin-bottom:2.1rem}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.9rem}
+.hero-facts{display:flex;flex-wrap:wrap;gap:1.6rem 2.4rem;margin-top:2.6rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+.hero-facts div{font-size:.95rem;color:var(--steel-2);line-height:1.35}
+.hero-facts strong{display:block;font:800 1.7rem var(--display);color:var(--steel)}
+.hero-visual{position:relative}
+.hero-visual .ph{aspect-ratio:4/5;border-radius:34px 34px 120px 34px;box-shadow:0 40px 70px -35px rgba(44,55,67,.55)}
+.hero-visual:hover .ph img{transform:scale(1.04)}
+.chip{position:absolute;display:flex;align-items:center;gap:.7rem;background:var(--white);border-radius:18px;padding:.8rem 1.1rem;font-weight:600;font-size:.92rem;box-shadow:0 18px 40px -18px rgba(44,55,67,.5)}
+.chip i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:none}
+.chip svg{width:18px;height:18px}
+.chip.a{left:-1.8rem;bottom:14%}
+.chip.a i{background:var(--yolk-soft);color:#a8760a}
+.chip.b{right:-.6rem;top:9%}
+.chip.b i{background:var(--blue-soft);color:var(--blue)}
+.hero .reveal-load{opacity:0;transform:translateY(18px);animation:rise .9s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .reveal-load:nth-child(2){animation-delay:.12s}
+.hero .reveal-load:nth-child(3){animation-delay:.24s}
+.hero .reveal-load:nth-child(4){animation-delay:.36s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ---------- Sections ---------- */
+section{padding:clamp(4rem,8vw,7rem) 0}
+.head{display:grid;gap:1rem;margin-bottom:3rem;max-width:62ch}
+
+/* Produits */
+.products{background:var(--paper)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem}
+.card{background:var(--white);border-radius:26px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line);transition:transform .4s cubic-bezier(.2,.7,.2,1),box-shadow .4s ease}
+.card:hover{transform:translateY(-8px);box-shadow:0 34px 50px -30px rgba(44,55,67,.45)}
+.card .ph{aspect-ratio:4/3}
+.card:hover .ph img{transform:scale(1.07)}
+.card-body{padding:1.7rem 1.7rem 1.9rem;display:flex;flex-direction:column;gap:.9rem;flex:1}
+.tag{align-self:flex-start;font-weight:700;font-size:.82rem;padding:.3rem .8rem;border-radius:999px}
+.tag.y{background:var(--yolk-soft);color:#8a5d00}
+.tag.w{background:var(--blue-soft);color:#1d628d}
+.tag.e{background:#e3f5f0;color:#157766}
+.card p{color:var(--steel-2);font-size:1rem}
+.card ul{list-style:none;display:grid;gap:.45rem;margin-top:auto;padding-top:.6rem;font-size:.95rem}
+.card li{display:flex;gap:.6rem;align-items:flex-start}
+.card li::before{content:"";flex:none;width:8px;height:8px;margin-top:.6rem;border-radius:50%;background:var(--fresh)}
+.card .more{margin-top:.6rem;font-weight:700;color:var(--fresh);display:inline-flex;gap:.4rem;align-items:center}
+.card .more:hover{text-decoration:underline}
+
+/* Technologie : la ligne de production */
+.tech{background:var(--steel);color:#e7edf2;overflow:hidden}
+.tech h2{color:var(--white)}
+.tech p.lead{color:#b6c2cd}
+.tech-top{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:end;margin-bottom:4.5rem}
+.sanovo-note{border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:1.5rem 1.7rem;background:rgba(255,255,255,.04)}
+.sanovo-note strong{font:800 1.25rem var(--display);color:var(--white);display:block;margin-bottom:.4rem}
+.sanovo-note span{color:#b6c2cd;font-size:.97rem}
+.line{position:relative;--p:0}
+.pipe{position:absolute;left:0;right:0;top:28px;height:14px;border-radius:99px;background:rgba(255,255,255,.1);box-shadow:inset 0 2px 5px rgba(0,0,0,.35)}
+.pipe::before{content:"";position:absolute;inset:0;border-radius:inherit;width:calc(var(--p)*100%);background:linear-gradient(90deg,var(--yolk),#9fcf8a 45%,var(--blue));transition:width .25s linear}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(5,1fr);gap:1.2rem;position:relative}
+.step{padding-top:0}
+.node{width:70px;height:70px;border-radius:50%;display:grid;place-items:center;background:var(--steel);border:3px solid rgba(255,255,255,.16);color:#8fa0af;position:relative;z-index:1;transition:border-color .5s,color .5s,background .5s,transform .5s}
+.node svg{width:30px;height:30px}
+.step.on .node{border-color:var(--yolk);color:var(--yolk);background:#36434f;transform:scale(1.06)}
+.step:nth-child(3).on .node,.step:nth-child(4).on .node{border-color:#9fcf8a;color:#9fcf8a}
+.step:nth-child(5).on .node{border-color:var(--blue);color:#7cc0ea}
+.step h3{font-size:1.2rem;color:var(--white);margin:1.2rem 0 .5rem}
+.step p{font-size:.95rem;color:#aebbc7;line-height:1.55}
+.guarantees{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:5rem}
+.guarantees div{border-top:2px solid var(--yolk);padding-top:1.1rem}
+.guarantees h3{font-size:1.2rem;color:var(--white);margin-bottom:.4rem}
+.guarantees p{color:#aebbc7;font-size:.97rem}
+
+/* Qualité */
+.quality-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(2rem,5vw,4.5rem);align-items:start}
+.badges{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.badge{border:1px solid var(--line);border-radius:22px;padding:1.4rem;background:var(--white);transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.badge:hover{transform:translateY(-5px);border-color:var(--fresh);box-shadow:0 22px 34px -24px rgba(31,158,134,.7)}
+.seal{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font:800 .95rem var(--display);margin-bottom:1rem;border:2px solid currentColor}
+.badge:nth-child(1) .seal{color:var(--fresh)}
+.badge:nth-child(2) .seal{color:var(--blue)}
+.badge:nth-child(3) .seal{color:#b98308}
+.badge:nth-child(4) .seal{color:var(--steel-2)}
+.badge h3{font-size:1.1rem;margin-bottom:.3rem}
+.badge p{font-size:.92rem;color:var(--steel-2);line-height:1.5}
+.points{list-style:none;display:grid;gap:1.4rem;margin-top:2rem}
+.points li{display:grid;grid-template-columns:30px 1fr;gap:1rem}
+.points svg{width:28px;height:28px;color:var(--fresh);margin-top:.15rem}
+.points strong{display:block;font-family:var(--display);font-size:1.15rem}
+.points span{color:var(--steel-2);font-size:.98rem}
+.note{margin-top:1.8rem;font-size:.85rem;color:var(--steel-3)}
+
+/* Contact */
+.contact{background:linear-gradient(180deg,var(--yolk-soft),#fffaf0)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,4rem);align-items:center}
+.contact-info{display:grid;gap:1rem;margin-top:2rem;color:var(--steel-2)}
+.contact-info div{display:flex;gap:.8rem;align-items:flex-start}
+.contact-info svg{width:22px;height:22px;color:var(--fresh);flex:none;margin-top:.2rem}
+.audience{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem}
+.audience span{background:var(--white);border:1px solid #f0dca0;border-radius:999px;padding:.3rem .9rem;font-size:.9rem;font-weight:500}
+form{background:var(--white);border-radius:28px;padding:clamp(1.5rem,3vw,2.3rem);box-shadow:0 36px 60px -36px rgba(120,86,0,.45);display:grid;gap:1.1rem}
+form h3{font-size:1.4rem}
+label{display:grid;gap:.4rem;font-weight:600;font-size:.92rem}
+input,select,textarea{font:500 1rem var(--body);color:var(--steel);padding:.8rem 1rem;border:1.5px solid var(--line);border-radius:14px;background:var(--white);transition:border-color .2s,box-shadow .2s;width:100%}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--fresh);box-shadow:0 0 0 4px rgba(31,158,134,.15)}
+textarea{resize:vertical;min-height:90px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+
+/* Pied de page */
+footer{background:var(--steel);color:#b6c2cd;padding:3.5rem 0 2rem;font-size:.95rem}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid rgba(255,255,255,.12)}
+footer .logo{color:var(--white);margin-bottom:1rem}
+footer h4{font:700 1rem var(--display);color:var(--white);margin-bottom:.9rem}
+footer ul{list-style:none;display:grid;gap:.5rem}
+footer a:hover{color:var(--yolk)}
+.legal{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding-top:1.6rem;font-size:.88rem}
+
+/* WhatsApp flottant */
+.fab{position:fixed;right:20px;bottom:20px;z-index:60;display:flex;align-items:center;gap:.7rem;background:var(--wa);color:#05361a;font-weight:700;padding:.85rem 1.2rem .85rem 1rem;border-radius:999px;box-shadow:0 16px 34px -10px rgba(5,54,26,.6);transition:transform .25s,box-shadow .25s}
+.fab:hover{transform:translateY(-3px) scale(1.03)}
+.fab svg{width:30px;height:30px}
+.fab::before{content:"";position:absolute;inset:0;border-radius:inherit;border:2px solid var(--wa);animation:pulse 2.6s ease-out infinite;pointer-events:none}
+@keyframes pulse{0%{transform:scale(1);opacity:.8}100%{transform:scale(1.35);opacity:0}}
+
+/* Apparition au défilement */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.grid3 .reveal:nth-child(2){transition-delay:.12s}
+.grid3 .reveal:nth-child(3){transition-delay:.24s}
+
+/* ---------- Responsive ---------- */
+@media (max-width:980px){
+  .hero-grid,.tech-top,.quality-grid,.contact-grid{grid-template-columns:1fr}
+  .hero-visual{max-width:520px}
+  .chip.a{left:-.4rem}
+  .grid3{grid-template-columns:1fr 1fr}
+  .grid3 .card:last-child{grid-column:1/-1}
+  .guarantees{grid-template-columns:1fr}
+  .foot{grid-template-columns:1fr 1fr}
+  .foot>div:first-child{grid-column:1/-1}
+}
+@media (max-width:860px){
+  .burger{display:block}
+  nav ul{position:absolute;left:0;right:0;top:74px;background:var(--white);flex-direction:column;align-items:stretch;gap:0;padding:.5rem 4% 1.4rem;border-bottom:1px solid var(--line);display:none}
+  nav ul.open{display:flex}
+  nav li a.link{display:block;padding:.95rem 0;border-bottom:1px solid var(--line)}
+  nav li:last-child{margin-top:1rem}
+  nav li:last-child .btn{width:100%;justify-content:center}
+  /* ligne de production à la verticale */
+  .pipe{left:34px;right:auto;top:0;bottom:0;width:14px;height:auto}
+  .pipe::before{width:100%;height:calc(var(--p)*100%);background:linear-gradient(180deg,var(--yolk),#9fcf8a 45%,var(--blue));transition:height .25s linear}
+  .steps{grid-template-columns:1fr;gap:2.2rem}
+  .step{display:grid;grid-template-columns:70px 1fr;column-gap:1.4rem}
+  .step .node{grid-row:1/3}
+  .step h3{margin:.2rem 0 .3rem}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .grid3{grid-template-columns:1fr}
+  .badges,.two{grid-template-columns:1fr}
+  .chip.b{right:.4rem}
+  .fab span{display:none}
+  .fab{padding:.8rem}
+  .foot{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal,.hero .reveal-load{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ EN-TÊTE ============ -->
+<header>
+  <div class="wrap nav">
+    <a href="#accueil" class="logo" aria-label="OvoPur – accueil">
+      <svg viewBox="0 0 34 40" aria-hidden="true">
+        <path d="M17 1C9.5 1 3 13 3 23a14 14 0 0 0 28 0C31 13 24.5 1 17 1Z" fill="#fff" stroke="#2c3743" stroke-width="2.4"/>
+        <path d="M5 25a12 12 0 0 0 24 0c-4 3-8 3-12 1.5S9 22 5 25Z" fill="#f2b632"/>
+        <circle cx="17" cy="26.5" r="4.2" fill="#f2b632" stroke="#2c3743" stroke-width="2"/>
+        <path d="M23 9.5c1.6 2 2.7 4.3 3.3 6.5" stroke="#1f9e86" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span>Ovo<b>Pur</b></span>
+    </a>
+    <button class="burger" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    <nav aria-label="Navigation principale">
+      <ul id="menu">
+        <li><a class="link" href="#accueil">Accueil</a></li>
+        <li><a class="link" href="#produits">Nos Produits</a></li>
+        <li><a class="link" href="#technologie">Technologie Sanovo</a></li>
+        <li><a class="link" href="#qualite">Qualité &amp; Sécurité</a></li>
+        <li><a class="btn btn-wa" data-wa href="#contact">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.1c-.2.7-1.4 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.3Z"/></svg>
+          Contact WhatsApp</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<!-- ============ HÉRO ============ -->
+<section class="hero" id="accueil">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 class="reveal-load">L'œuf liquide, pasteurisé avec la précision d'une usine moderne.</h1>
+      <p class="lead reveal-load">OvoPur transforme des œufs frais en œufs entiers, jaunes et blancs liquides, prêts à l'emploi. Une ligne SANOVO entièrement automatisée garantit une qualité sûre et identique d'un lot à l'autre.</p>
+      <div class="hero-cta reveal-load">
+        <a class="btn btn-primary" href="#technologie">Découvrir notre technologie
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#produits">Voir les 3 gammes</a>
+      </div>
+      <div class="hero-facts reveal-load">
+        <div><strong>3</strong>gammes d'ovoproduits</div>
+        <div><strong>24 – 48 h</strong>entre la ponte et le cassage</div>
+        <div><strong>+4 °C</strong>refroidissement rapide</div>
+      </div>
+    </div>
+    <div class="hero-visual reveal-load">
+      <div class="ph" data-file="Ajoutez images/oeufs-entiers.jpg">
+        <img src="images/oeufs-entiers.jpg" alt="Œuf liquide : jaune éclatant et blanc pur" loading="eager" onerror="this.parentElement.classList.add('noimg');this.remove()">
+      </div>
+      <div class="chip a"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3Z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></i>Pasteurisé et tracé par lot</div>
+      <div class="chip b"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11Z"/></svg></i>Prêt à verser, zéro coquille</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUITS ============ -->
+<section class="products" id="produits">
+  <div class="wrap">
+    <div class="head reveal">
+      <h2>Trois gammes, un même niveau d'exigence</h2>
+      <p class="lead">Chaque ovoproduit est pasteurisé, refroidi et conditionné pour répondre aux besoins précis des professionnels de la boulangerie, de l'industrie et de la restauration.</p>
+    </div>
+    <div class="grid3">
+      <article class="card reveal">
+        <div class="ph" data-file="Ajoutez images/oeufs-entiers.jpg">
+          <img src="images/oeufs-entiers.jpg" alt="Œufs entiers liquides" loading="lazy" onerror="this.parentElement.classList.add('noimg');this.remove()">
+        </div>
+        <div class="card-body">
+          <span class="tag e">Œufs entiers liquides</span>
+          <h3>Le mélange homogène, prêt à doser</h3>
+          <p>Jaune et blanc parfaitement mélangés, pour une texture régulière dans toutes vos préparations.</p>
+          <ul>
+            <li>Pâtisseries, gâteaux et biscuits</li>
+            <li>Plats préparés et omelettes</li>
+            <li>Restauration collective et hôtels</li>
+          </ul>
+          <a class="more" data-wa data-msg="Bonjour OvoPur, je souhaite recevoir la fiche technique et un tarif pour les œufs entiers liquides." href="#contact">Demander la fiche technique</a>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="ph" data-file="Ajoutez images/jaune-oeuf.jpg">
+          <img src="images/jaune-oeuf.jpg" alt="Jaunes d'œufs liquides" loading="lazy" onerror="this.parentElement.classList.add('noimg');this.remove()">
+        </div>
+        <div class="card-body">
+          <span class="tag y">Jaunes d'œufs liquides</span>
+          <h3>Richesse, couleur et onctuosité</h3>
+          <p>Un jaune dense et émulsifiant, qui apporte moelleux, couleur et tenue à vos recettes.</p>
+          <ul>
+            <li>Sauces, mayonnaises et crèmes</li>
+            <li>Viennoiseries et pâtes briochées</li>
+            <li>Crèmes pâtissières et glaces</li>
+          </ul>
+          <a class="more" data-wa data-msg="Bonjour OvoPur, je souhaite recevoir la fiche technique et un tarif pour les jaunes d'œufs liquides." href="#contact">Demander la fiche technique</a>
+        </div>
+      </article>
+      <article class="card reveal">
+        <div class="ph" data-file="Ajoutez images/blanc-oeuf.jpg">
+          <img src="images/blanc-oeuf.jpg" alt="Blancs d'œufs liquides" loading="lazy" onerror="this.parentElement.classList.add('noimg');this.remove()">
+        </div>
+        <div class="card-body">
+          <span class="tag w">Blancs d'œufs liquides</span>
+          <h3>Un foisonnement haute performance</h3>
+          <p>Un blanc pur, riche en protéines, qui monte vite et tient bien en meringue, biscuit ou confiserie.</p>
+          <ul>
+            <li>Meringues, macarons et nougats</li>
+            <li>Biscuiterie et gaufrettes</li>
+            <li>Produits riches en protéines</li>
+          </ul>
+          <a class="more" data-wa data-msg="Bonjour OvoPur, je souhaite recevoir la fiche technique et un tarif pour les blancs d'œufs liquides." href="#contact">Demander la fiche technique</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECHNOLOGIE ============ -->
+<section class="tech" id="technologie">
+  <div class="wrap">
+    <div class="tech-top">
+      <div class="reveal">
+        <h2>Une ligne SANOVO, du cassage au conditionnement aseptique</h2>
+        <p class="lead" style="margin-top:1.2rem">Chaque œuf suit le même parcours automatisé, sans manipulation manuelle. Faites défiler pour suivre le liquide le long de la ligne.</p>
+      </div>
+      <div class="sanovo-note reveal">
+        <strong>SANOVO, référence mondiale</strong>
+        <span>Notre équipement vient d'un des leaders mondiaux des machines de traitement de l'œuf, conçu pour l'hygiène, la cadence et la régularité.</span>
+      </div>
+    </div>
+
+    <div class="line" id="line">
+      <div class="pipe" aria-hidden="true"></div>
+      <ol class="steps">
+        <li class="step">
+          <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-3.5 0-6 4.5-6 9a6 6 0 0 0 12 0c0-4.500-2.500-9-6-9Z"/><path d="m8 11 2.500 2L13 10l3 3"/></svg></div>
+          <h3>Cassage haute précision</h3>
+          <p>Les œufs sont mirés puis cassés mécaniquement. Le jaune et le blanc sont séparés ou conservés entiers selon la gamme.</p>
+        </li>
+        <li class="step">
+          <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16l-6 8v5l-4 2v-7L4 5Z"/></svg></div>
+          <h3>Filtration</h3>
+          <p>Les fragments de coquille et les membranes sont retirés pour un liquide parfaitement lisse.</p>
+        </li>
+        <li class="step">
+          <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.800V5a2 2 0 0 0-4 0v9.800a4 4 0 1 0 4 0Z"/><path d="M12 9v7"/></svg></div>
+          <h3>Pasteurisation douce</h3>
+          <p>Un traitement thermique maîtrisé élimine les germes tout en préservant les propriétés culinaires de l'œuf.</p>
+        </li>
+        <li class="step">
+          <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4.500 6.500l15 11M19.500 6.500l-15 11"/><path d="m9.500 3.500 2.500 2 2.500-2M9.500 20.500l2.500-2 2.500 2"/></svg></div>
+          <h3>Refroidissement rapide</h3>
+          <p>La température descend vite à +4 °C pour garder la fraîcheur et bloquer toute recontamination.</p>
+        </li>
+        <li class="step">
+          <div class="node"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h10l-1 4H8L7 3Z"/><path d="M8 7h8v13a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V7Z"/><path d="M8 12h8"/></svg></div>
+          <h3>Conditionnement aseptique</h3>
+          <p>Le produit est conditionné en circuit fermé, puis étiqueté avec son numéro de lot.</p>
+        </li>
+      </ol>
+    </div>
+
+    <div class="guarantees">
+      <div class="reveal"><h3>Hygiène stricte</h3><p>Circuit fermé, nettoyage en place, zones séparées et contrôles réguliers du personnel et des surfaces.</p></div>
+      <div class="reveal"><h3>Traçabilité complète</h3><p>Chaque lot est rattaché à son élevage d'origine, à sa date de cassage et à ses analyses.</p></div>
+      <div class="reveal"><h3>Qualité constante</h3><p>Des paramètres automatisés donnent le même goût, la même texture et le même rendement à chaque livraison.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUALITÉ ============ -->
+<section id="qualite">
+  <div class="wrap quality-grid">
+    <div class="reveal">
+      <h2>La sécurité alimentaire, au cœur de chaque lot</h2>
+      <p class="lead" style="margin-top:1.2rem">Nos procédures suivent les référentiels reconnus de l'industrie agroalimentaire, de la réception des œufs jusqu'à la livraison.</p>
+      <ul class="points">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6L5 19a2 2 0 0 0 1.800 3h10.400A2 2 0 0 0 19 19l-5-10V3"/></svg>
+          <div><strong>Analyses microbiologiques</strong><span>Des contrôles internes et par laboratoire externe valident chaque production.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h4l2-6 4 12 2-6h4"/></svg>
+          <div><strong>Chaîne du froid maîtrisée</strong><span>Stockage et transport réfrigérés pour livrer un produit toujours frais.</span></div></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4H6a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-3"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="m9 14 2 2 4-4"/></svg>
+          <div><strong>Documents à la demande</strong><span>Fiches techniques, certificats d'analyse et attestations sont fournis à nos clients.</span></div></li>
+      </ul>
+    </div>
+    <div>
+      <div class="badges">
+        <div class="badge reveal"><div class="seal">HACCP</div><h3>Maîtrise des risques</h3><p>Analyse des dangers et points critiques à chaque étape de production.</p></div>
+        <div class="badge reveal"><div class="seal">ISO<br>22000</div><h3>Management de la sécurité</h3><p>Un système structuré de sécurité des denrées alimentaires.</p></div>
+        <div class="badge reveal"><div class="seal">DSV</div><h3>Contrôle vétérinaire</h3><p>Agrément et suivi sanitaire des services vétérinaires.</p></div>
+        <div class="badge reveal"><div class="seal">Lot</div><h3>Traçabilité</h3><p>De l'élevage à votre atelier, chaque lot est identifié et suivi.</p></div>
+      </div>
+      <p class="note">Les certifications affichées reflètent les référentiels appliqués par OvoPur.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div class="reveal">
+      <h2>Parlons de vos besoins en ovoproduits</h2>
+      <p class="lead" style="margin-top:1.2rem">Décrivez votre activité et vos volumes. Notre équipe commerciale vous répond sur WhatsApp avec fiches techniques, échantillons et tarifs.</p>
+      <div class="audience"><span>Boulangeries</span><span>Pâtisseries</span><span>Industries agroalimentaires</span><span>Hôtels</span><span>Restaurants</span></div>
+      <div class="contact-info">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.100 7-11a7 7 0 0 0-14 0c0 4.900 7 11 7 11Z"/><circle cx="12" cy="10" r="2.500"/></svg><span>Jijel, Algérie</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg><span id="phoneShow">+213 000 00 00 00</span></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span>contact@ovopur.dz</span></div>
+      </div>
+    </div>
+    <form id="waForm" class="reveal" novalidate>
+      <h3>Demande de devis par WhatsApp</h3>
+      <div class="two">
+        <label>Nom ou société<input type="text" id="fName" placeholder="Boulangerie El Amel" autocomplete="organization"></label>
+        <label>Activité
+          <select id="fType">
+            <option>Boulangerie / pâtisserie</option>
+            <option>Industrie agroalimentaire</option>
+            <option>Hôtel</option>
+            <option>Restaurant / traiteur</option>
+            <option>Autre</option>
+          </select>
+        </label>
+      </div>
+      <div class="two">
+        <label>Produit
+          <select id="fProd">
+            <option>Œufs entiers liquides</option>
+            <option>Jaunes d'œufs liquides</option>
+            <option>Blancs d'œufs liquides</option>
+            <option>Plusieurs gammes</option>
+          </select>
+        </label>
+        <label>Volume estimé par mois<input type="text" id="fQty" placeholder="Ex. 200 kg"></label>
+      </div>
+      <label>Message (facultatif)<textarea id="fMsg" placeholder="Ville de livraison, fréquence, conditionnement souhaité…"></textarea></label>
+      <button type="submit" class="btn btn-wa" style="justify-content:center">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.1c-.2.7-1.4 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.300Z"/></svg>
+        Envoyer sur WhatsApp</button>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- ============ PIED DE PAGE ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="logo"><span>Ovo<b style="color:var(--yolk)">Pur</b></span></div>
+        <p style="max-width:38ch">Œufs liquides pasteurisés pour les professionnels de l'alimentation, produits sur une ligne SANOVO automatisée à Jijel.</p>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#produits">Nos Produits</a></li>
+          <li><a href="#technologie">Technologie Sanovo</a></li>
+          <li><a href="#qualite">Qualité &amp; Sécurité</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Jijel, Algérie</li>
+          <li><a data-wa href="#contact">WhatsApp commercial</a></li>
+          <li>contact@ovopur.dz</li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© <span id="year">2026</span> OvoPur. Tous droits réservés.</span>
+      <span><a href="#">Mentions légales</a> &nbsp;·&nbsp; <a href="#">Politique de confidentialité</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- Bouton WhatsApp flottant -->
+<a class="fab" data-wa href="#contact" aria-label="Contacter OvoPur sur WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Zm5.8 14.1c-.2.7-1.4 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1.1c.2-.3.4-.2.6-.1l2 .9c.3.1.5.2.5.3.1.2.1.8-.1 1.3Z"/></svg>
+  <span>WhatsApp</span>
+</a>
+
+<script>
+/* ===== À PERSONNALISER : numéro WhatsApp au format international, sans + ni espaces ===== */
+const WA_NUMBER = "213000000000";
+const WA_DEFAULT = "Bonjour OvoPur, je suis professionnel et je souhaite recevoir une offre pour vos œufs liquides pasteurisés.";
+
+const waLink = (text) => "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(text);
+
+/* Liens WhatsApp (menu, cartes produits, bouton flottant, pied de page) */
+document.querySelectorAll("[data-wa]").forEach(a => {
+  a.href = waLink(a.dataset.msg || WA_DEFAULT);
+  a.target = "_blank";
+  a.rel = "noopener";
+});
+
+/* Numéro affiché */
+const p = WA_NUMBER;
+if (p.length >= 12) {
+  document.getElementById("phoneShow").textContent =
+    "+" + p.slice(0,3) + " " + p.slice(3,6) + " " + p.slice(6,8) + " " + p.slice(8,10) + " " + p.slice(10);
+}
+
+/* Formulaire → message WhatsApp pré-rempli */
+document.getElementById("waForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const v = id => document.getElementById(id).value.trim();
+  const lines = [
+    "Bonjour OvoPur,",
+    "Je suis " + (v("fName") || "un professionnel") + " (" + v("fType") + ").",
+    "Je suis intéressé par : " + v("fProd") + (v("fQty") ? " – volume estimé : " + v("fQty") + " par mois." : "."),
+    v("fMsg"),
+    "Pouvez-vous m'envoyer la fiche technique et un tarif ? Merci."
+  ].filter(Boolean);
+  window.open(waLink(lines.join("\n")), "_blank", "noopener");
+});
+
+/* Menu mobile */
+const burger = document.querySelector(".burger");
+const menu = document.getElementById("menu");
+burger.addEventListener("click", () => {
+  const open = menu.classList.toggle("open");
+  burger.setAttribute("aria-expanded", open);
+});
+menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+  menu.classList.remove("open");
+  burger.setAttribute("aria-expanded", "false");
+}));
+
+/* Apparition au défilement */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+}, { threshold: .15 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* Ligne de production : le liquide avance avec le défilement */
+const line = document.getElementById("line");
+const steps = [...line.querySelectorAll(".step")];
+function updateLine() {
+  const r = line.getBoundingClientRect();
+  const vh = window.innerHeight;
+  let prog = (vh * 0.8 - r.top) / (r.height + vh * 0.25);
+  prog = Math.max(0, Math.min(1, prog));
+  line.style.setProperty("--p", prog.toFixed(3));
+  steps.forEach((s, i) => s.classList.toggle("on", prog > i / steps.length + 0.03));
+}
+window.addEventListener("scroll", updateLine, { passive: true });
+window.addEventListener("resize", updateLine);
+updateLine();
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
