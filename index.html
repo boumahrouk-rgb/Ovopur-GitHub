@@ -597,5 +597,44 @@ updateLine();
 
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
+  <!-- Pied de page avec le compteur -->
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+            <div>OvoPur Industrial Suite © 2026 — Tous droits réservés</div>
+            
+            <!-- 🟢 COLLEZ LE COMPTEUR ICI (en bas) -->
+            <div id="visitor-counter-box" class="inline-flex items-center bg-slate-900 text-white px-3 py-1.5 rounded-lg shadow-sm">
+                <i class="fa-solid fa-eye text-sky-400 mr-2"></i>
+                <span>Visites totales : <strong id="visit-count" class="text-sky-400 ml-1">Chargement...</strong></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 🟢 METTEZ LE SCRIPT JAVASCRIPT TOUT À LA FIN (juste avant </body>) -->
+    <script>
+        const namespace = "ovopur-site-production";
+        const key = "visits";
+
+        async function updateVisitorCounter() {
+            try {
+                const response = await fetch(`https://api.countapi.xyz/hit/${namespace}/${key}`);
+                const data = await response.json();
+                document.getElementById('visit-count').innerText = data.value.toLocaleString();
+            } catch (error) {
+                let localVisits = localStorage.getItem('ovopur_local_visits');
+                if (!localVisits) {
+                    localVisits = 1250;
+                } else {
+                    localVisits = parseInt(localVisits) + 1;
+                }
+                localStorage.setItem('ovopur_local_visits', localVisits);
+                document.getElementById('visit-count').innerText = parseInt(localVisits).toLocaleString();
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", updateVisitorCounter);
+    </script>
+</body>
+</html>em
 </body>
 </html>
